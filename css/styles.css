@@ -1,0 +1,36 @@
+.container {
+    background-color:#eeeeee;
+    display:inline;
+    width: 100%;
+}
+
+.horizontal-list {
+   margin: auto;
+   float: right;
+}
+
+.horizontal-list li {
+  display: inline;
+  padding-left: 10px;
+  display: inline;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.margin-left img {
+    height: 30px;
+}
+
+.account-img {
+    border-radius: 50%;
+}
+
+.center {
+    margin: auto;
+    width: 50vh;
+    padding: 10px;
+    text-align: center;
+    padding-top: 40vh;
+  }
