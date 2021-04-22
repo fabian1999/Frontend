@@ -142,13 +142,13 @@ body {
   color: rgba(0, 0, 0, 0.54);
   text-align: left;
   margin: 0;
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
 }
 
 hr {
-    margin: 0;
-    padding: 0;
-    background-color: #DADCE0;
-    border: 0;
-    height: 1px;
+  margin: 0;
+  padding: 0;
+  background-color: #dadce0;
+  border: 0;
+  height: 1px;
 }
