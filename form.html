@@ -12,35 +12,40 @@
 
   <body>
     <div class="container">
-      <h1>Form</h1>
+      <div class="form">
+        <h1>Form</h1>
 
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" />
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" />
 
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" />
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" />
 
-      <label for="email">Last Name:</label>
-      <input type="text" id="email" name="email" />
+        <label for="email">Last Name:</label>
+        <input type="text" id="email" name="email" />
 
-      <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-          <a href="#">Barbat</a>
-          <a href="#">Femeie</a>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown</button>
+          <div class="dropdown-content">
+            <a href="#">Barbat</a>
+            <a href="#">Femeie</a>
+          </div>
         </div>
+
+        <label class="label-start-date" for="start">Start date:</label>
+
+        <input
+          type="date"
+          id="start"
+          name="trip-start"
+          value="2018-07-22"
+          min="2018-01-01"
+          max="2018-12-31"
+        />
       </div>
-
-      <label class="label-start-date" for="start">Start date:</label>
-
-      <input
-        type="date"
-        id="start"
-        name="trip-start"
-        value="2018-07-22"
-        min="2018-01-01"
-        max="2018-12-31"
-      />
+      <div class='list'>
+          
+      </div>
     </div>
   </body>
 </html>
