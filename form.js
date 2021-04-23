@@ -1,3 +1,8 @@
+function deleteUser(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+
 function addFields() {
   // Number of inputs to create
   var lastName = document.getElementById("lastName").value;
@@ -7,7 +12,11 @@ function addFields() {
   var date = document.getElementById("start").value;
 
   if (
-    (lastName == "" || firstName == "" || email == "" || sex == "" || date == "")
+    lastName == "" ||
+    firstName == "" ||
+    email == "" ||
+    sex == "" ||
+    date == ""
   ) {
     alert("Fields are required.");
   } else {
@@ -24,6 +33,6 @@ function addFields() {
       sex +
       "</td><td>" +
       date +
-      "</td></tr>";
+      "</td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
   }
 }
