@@ -24,13 +24,11 @@
         <label for="email">Email:</label>
         <input type="text" id="email" name="email" />
 
-        <div class="dropdown">
-          <button class="dropbtn">Sex</button>
-          <div class="dropdown-content">
-            <a href="#">Barbat</a>
-            <a href="#">Femeie</a>
-          </div>
-        </div>
+        <select id="ddlViewBy">
+            <option value="1">test1</option>
+            <option value="2" selected="selected">test2</option>
+            <option value="3">test3</option>
+          </select>
 
         <label class="label-start-date" for="start">Start date:</label>
 
@@ -43,7 +41,7 @@
           max="2018-12-31"
         />
 
-        <button class="styled-buttons">Submit</button>
+        <button class="styled-buttons" onClick="addFields()">Submit</button>
       </div>
       <div class="list">
         <table id="table">
