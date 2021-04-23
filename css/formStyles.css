@@ -54,6 +54,23 @@ input {
   padding-right: 10px;
 }
 
+#dropdown {
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  box-shadow: 0px 0px 1px 1px #000000;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#table {
+  width: 90vh;
+}
+
+td {
+  text-align: center;
+}
+
 .styled-buttons {
   height: 35px;
   width: 130px;
