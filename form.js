@@ -1,12 +1,17 @@
-function readURL(input) {
+function deleteUser(btn) {
+  var row = btn.parentNode.parentNode;
+  row.parentNode.removeChild(row);
+}
+
+function readURL(input, id) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $("#blah").attr("src", e.target.result);
+      $("#image" + id).attr("src", e.target.result);
     };
 
-    reader.readAsDataURL(input.files[0]); // convert to base64 string
+    reader.readAsDataURL(input.files[0]);
   }
 }
 
@@ -15,16 +20,35 @@ function deleteUser(btn) {
   row.parentNode.removeChild(row);
 }
 
+function formatDate(userDate) {
+  var d = new Date(userDate);
+
+  const monthNames = [
+    "Ianuarie",
+    "Februarie",
+    "Martie",
+    "Aprilie",
+    "Mai",
+    "Iunie",
+    "Iulie",
+    "August",
+    "Septembrie",
+    "Octombrie",
+    "Noiembrie",
+    "Decembrie",
+  ];
+
+  return d.getDay() + " " + monthNames[d.getMonth()] + " " + d.getFullYear();
+}
+
 function addFields() {
   // Number of inputs to create
   var lastName = document.getElementById("lastName").value;
   var firstName = document.getElementById("firstName").value;
   var email = document.getElementById("email").value;
   var sex = document.getElementById("dropdown").value;
-  var file = document.getElementById("myfile").value;
-  var date = document.getElementById("start").value;
-
-  readURL(file);
+  var file = document.getElementById("myfile");
+  var date = formatDate(document.getElementById("start").value);
 
   if (
     lastName == "" ||
@@ -37,6 +61,8 @@ function addFields() {
   } else {
     var list = document.getElementsByClassName("list");
 
+    var id = document.getElementById("table").getElementsByTagName("tr").length;
+
     document.getElementById("table").insertRow(-1).innerHTML =
       "<tr><td>" +
       lastName +
@@ -48,6 +74,10 @@ function addFields() {
       sex +
       "</td><td>" +
       date +
-      "</td><td><img id='blah' src='#'></img></td><button onClick='deleteUser(this)'>X</button></td></tr>";
+      "</td><td><img id='image" +
+      id +
+      "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
   }
+
+  readURL(file, id);
 }
