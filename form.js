@@ -1,3 +1,15 @@
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+      $("#blah").attr("src", e.target.result);
+    };
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
 function deleteUser(btn) {
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
@@ -9,7 +21,10 @@ function addFields() {
   var firstName = document.getElementById("firstName").value;
   var email = document.getElementById("email").value;
   var sex = document.getElementById("dropdown").value;
+  var file = document.getElementById("myfile").value;
   var date = document.getElementById("start").value;
+
+  readURL(file);
 
   if (
     lastName == "" ||
@@ -33,6 +48,6 @@ function addFields() {
       sex +
       "</td><td>" +
       date +
-      "</td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
+      "</td><td><img id='blah' src='#'></img></td><button onClick='deleteUser(this)'>X</button></td></tr>";
   }
 }

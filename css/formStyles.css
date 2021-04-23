@@ -14,8 +14,8 @@ html {
 
 .form {
   margin: auto;
-  width: 40vh;
-  height: 65vh;
+  width: 50vh;
+  height: 80vh;
   display: grid;
   justify-content: center;
   background: #74ebd5; /* fallback for old browsers */
@@ -34,8 +34,8 @@ html {
 }
 
 .list {
-  width: 100vh;
-  min-height: 35vh;
+  width: 130vh;
+  min-height: 20vh;
   background-color: white;
   display: grid;
   justify-content: center;
@@ -44,7 +44,11 @@ html {
   box-shadow: 5px 5px 5px 1px #000000;
 }
 
-input {
+#myfile {
+    margin-bottom: 10px;
+}
+
+.styled-input {
   margin-bottom: 20px;
   border-radius: 10px;
   outline: none;
@@ -64,7 +68,7 @@ input {
 }
 
 #table {
-  width: 90vh;
+  width: 120vh;
 }
 
 td {

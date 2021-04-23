@@ -16,16 +16,37 @@
         <h1>Form</h1>
 
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" value="" required />
+        <input
+          type="text"
+          id="lastName"
+          name="lastName"
+          value=""
+          required
+          class="styled-input"
+        />
 
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" value="" required />
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          value=""
+          required
+          class="styled-input"
+        />
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" value="" required />
+        <input
+          type="text"
+          id="email"
+          name="email"
+          value=""
+          required
+          class="styled-input"
+        />
 
         <label for="dropdown">Sex:</label>
-        <select id="dropdown" required>
+        <select id="dropdown" required class="styled-input">
           <option value="" selected="selected">None</option>
           <option value="Barbat">Barbat</option>
           <option value="Femeie">Femeie</option>
@@ -34,6 +55,7 @@
         <label class="label-start-date" for="start">Start date:</label>
 
         <input
+          class="styled-input"
           type="date"
           id="start"
           name="trip-start"
@@ -42,6 +64,9 @@
           max="2022-12-31"
           required
         />
+
+        <label for="myfile">Select files:</label>
+        <input type="file" id="myfile" name="myfile" multiple />
 
         <button class="styled-buttons" onClick="addFields()">Submit</button>
       </div>
@@ -53,18 +78,9 @@
             <th>Email</th>
             <th>Sex</th>
             <th>Date</th>
+            <th>Image</th>
             <th>Delete</th>
           </tr>
-          <!-- <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-          </tr>
-          <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
-          </tr> -->
         </table>
       </div>
     </div>
