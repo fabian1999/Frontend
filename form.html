@@ -16,18 +16,19 @@
         <h1>Form</h1>
 
         <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" name="lastName" />
+        <input type="text" id="lastName" name="lastName" value="" required />
 
         <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" name="firstName" />
+        <input type="text" id="firstName" name="firstName" value="" required />
 
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" />
+        <input type="text" id="email" name="email" value="" required />
 
         <label for="dropdown">Sex:</label>
-        <select id="dropdown">
+        <select id="dropdown" required>
+          <option value="" selected="selected">None</option>
           <option value="Barbat">Barbat</option>
-          <option value="Femeie" selected="selected">Femeie</option>
+          <option value="Femeie">Femeie</option>
         </select>
 
         <label class="label-start-date" for="start">Start date:</label>
@@ -36,9 +37,10 @@
           type="date"
           id="start"
           name="trip-start"
-          value="2021-01-01"
+          value=""
           min="2021-01-01"
           max="2022-12-31"
+          required
         />
 
         <button class="styled-buttons" onClick="addFields()">Submit</button>
