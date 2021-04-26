@@ -17,7 +17,14 @@ html {
 .container {
   width: 92%;
   margin-left: 8%;
-  margin-top: 5%;
+  margin-top: 0%;
+}
+
+.filters {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
 }
 
 #myInput {

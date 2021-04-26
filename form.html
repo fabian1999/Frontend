@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <div class='filters'>
+      <input
+        type="text"
+        id="myInput"
+        onkeyup="myFunction()"
+        placeholder="Search for names.."
+      />
+      <label for="dropdown">Sex:</label>
+      <select id="" required class="styled-input">
+        <option value="" selected="selected">None</option>
+        <option value="Barbat">Barbat</option>
+        <option value="Femeie">Femeie</option>
+      </select>
+    </div>
     <div class="container">
       <div class="form">
         <h1>Form</h1>
@@ -70,8 +84,8 @@
 
         <button class="styled-buttons" onClick="addFields()">Submit</button>
       </div>
+
       <div class="list">
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
         <table id="table">
           <tr>
             <th>Last Name</th>
