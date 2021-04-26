@@ -82,41 +82,21 @@ function addFields() {
   readURL(file, id);
 }
 
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("table");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
-function filterSexFunction() {
-  console.log('test');
+function filterFunction() {
   filter = $("#filterSex").val();
-  console.log(filter);
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
+
+  input = document.getElementById("myInput");
+  filterInput = input.value.toUpperCase();
 
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[3];
     td0 = tr[i].getElementsByTagName("td")[0];
     if (td && td0) {
       txtValue = td.textContent || td.innerText;
-      if (txtValue.indexOf(filter) > -1) {
+      txtValue0 = td0.textContent || td0.innerText;
+      if (txtValue.indexOf(filter) > -1 && txtValue0.toUpperCase().indexOf(filterInput) > -1) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
