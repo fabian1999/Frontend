@@ -103,3 +103,24 @@ function myFunction() {
     }
   }
 }
+
+function filterSexFunction() {
+  console.log('test');
+  filter = $("#filterSex").val();
+  console.log(filter);
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[3];
+    td0 = tr[i].getElementsByTagName("td")[0];
+    if (td && td0) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

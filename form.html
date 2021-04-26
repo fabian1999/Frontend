@@ -8,6 +8,9 @@
     <meta name="description" content="The HTML5 Herald" />
     <meta name="author" content="SitePoint" />
     <link rel="stylesheet" href="css/formStyles.css" />
+
+    <script src="form.js"></script>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   </head>
 
   <body>
@@ -18,8 +21,8 @@
         onkeyup="myFunction()"
         placeholder="Search for names.."
       />
-      <label for="dropdown">Sex:</label>
-      <select id="" required class="styled-input">
+      <label for="filterSex">Filter Sex:</label>
+      <select id="filterSex" required class="styled-input" onchange="filterSexFunction()">
         <option value="" selected="selected">None</option>
         <option value="Barbat">Barbat</option>
         <option value="Femeie">Femeie</option>
@@ -100,7 +103,5 @@
       </div>
     </div>
 
-    <script src="form.js"></script>
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
   </body>
 </html>
