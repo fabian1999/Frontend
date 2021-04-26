@@ -38,7 +38,7 @@ function formatDate(userDate) {
     "Decembrie",
   ];
 
-  return d.getDay() + " " + monthNames[d.getMonth()] + " " + d.getFullYear();
+  return d.getDate() + " " + monthNames[d.getMonth()] + " " + d.getFullYear();
 }
 
 function addFields() {
@@ -48,7 +48,7 @@ function addFields() {
   var email = document.getElementById("email").value;
   var sex = document.getElementById("dropdown").value;
   var file = document.getElementById("myfile");
-  var date = formatDate(document.getElementById("start").value);
+  var date = document.getElementById("start").value;
 
   if (
     lastName == "" ||
@@ -102,5 +102,39 @@ function filterFunction() {
         tr[i].style.display = "none";
       }
     }
+  }
+}
+
+function sortTableByDate() {
+
+  var sortAttribute = document.getElementById("sortDateButton").getAttribute("sort");
+  if(sortAttribute == "up") document.getElementById("sortDateButton").setAttribute("sort", "down");
+  else document.getElementById("sortDateButton").setAttribute("sort", "up");
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("table");
+  switching = true;
+  while (switching) {
+      switching = false;
+      rows = table.rows;
+      for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          x = new Date(rows[i].getElementsByTagName("td")[4].innerText);
+          y = new Date(rows[i + 1].getElementsByTagName("td")[4].innerText);
+          if(sortAttribute == "up") {
+              if (x < y) {
+                  shouldSwitch = true;
+                  break;
+              }
+          } else if(sortAttribute == "down") {
+              if (x > y) {
+                  shouldSwitch = true;
+                  break;
+              }
+          }
+      }
+      if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+      }
   }
 }

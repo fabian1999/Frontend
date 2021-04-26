@@ -21,12 +21,15 @@
         onkeyup="filterFunction()"
         placeholder="Search for names.."
       />
+      <br/>
       <label for="filterSex">Filter Sex:</label>
       <select id="filterSex" required class="styled-input" onchange="filterFunction()">
         <option value="" selected="selected">None</option>
         <option value="Barbat">Barbat</option>
         <option value="Femeie">Femeie</option>
       </select>
+      <br/>
+      <button class="styled-buttons" id="sortDateButton" sort="up" onClick="sortTableByDate()" style="margin-bottom: 0; height: 25px;">Sort By Date</button>
     </div>
     <div class="container">
       <div class="form">
