@@ -1,3 +1,5 @@
+var employeesList = [];
+
 jQuery(document).ready(function ($) {
   $.ajax({
     method: "GET",
@@ -17,8 +19,6 @@ function loadEmployees(employeesList) {
     appendRow(employeesList[index]);
   }
 }
-
-var employeesList = [];
 
 function deleteUser(btn) {
   var row = btn.parentNode.parentNode;
@@ -69,7 +69,7 @@ function validateInput(newEmployee) {
     !newEmployee.lastName ||
     !newEmployee.email ||
     !newEmployee.file ||
-    !newEmployee.date
+    !newEmployee.birthdate
   ) {
     return false;
   }
@@ -87,9 +87,9 @@ function appendRow(employee) {
     "</td><td>" +
     employee.email +
     "</td><td>" +
-    employee.sex +
+    employee.gender +
     "</td><td>" +
-    employee.date +
+    employee.birthdate +
     "</td><td><img id='image" +
     id +
     "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
@@ -103,9 +103,9 @@ function addFields() {
   newEmployee.lastName = document.getElementById("lastName").value;
   newEmployee.firstName = document.getElementById("firstName").value;
   newEmployee.email = document.getElementById("email").value;
-  newEmployee.sex = document.getElementById("dropdown").value;
+  newEmployee.gender = document.getElementById("dropdown").value;
   newEmployee.file = document.getElementById("myfile");
-  newEmployee.date = document.getElementById("start").value;
+  newEmployee.birthdate = document.getElementById("start").value;
 
   if (!validateInput(newEmployee)) {
     alert("Fields are required.");
@@ -116,7 +116,7 @@ function addFields() {
 }
 
 function filterFunction() {
-  filter = $("#filterSex").val();
+  filter = $("#filtergender").val();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
 
