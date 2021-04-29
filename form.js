@@ -1,3 +1,25 @@
+jQuery(document).ready(function ($) {
+  $.ajax({
+    method: "GET",
+    url: "https://localhost:5001/employee/Employee",
+    success: function (data) {
+      employeesList = data;
+      loadEmployees(employeesList);
+    },
+    error: function (data) {
+      alert(`Failed to load employees list.`);
+    },
+  });
+});
+
+function loadEmployees(employeesList) {
+  for (index = 0; index < employeesList.length; index++) {
+    appendRow(employeesList[index]);
+  }
+}
+
+var employeesList = [];
+
 function deleteUser(btn) {
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
@@ -41,45 +63,56 @@ function formatDate(userDate) {
   return d.getDate() + " " + monthNames[d.getMonth()] + " " + d.getFullYear();
 }
 
+function validateInput(newEmployee) {
+  if (
+    !newEmployee.firstName ||
+    !newEmployee.lastName ||
+    !newEmployee.email ||
+    !newEmployee.file ||
+    !newEmployee.date
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function appendRow(employee) {
+  var id = document.getElementById("table").getElementsByTagName("tr").length;
+
+  document.getElementById("table").insertRow(-1).innerHTML =
+    "<tr><td>" +
+    employee.lastName +
+    "</td><td>" +
+    employee.firstName +
+    "</td><td>" +
+    employee.email +
+    "</td><td>" +
+    employee.sex +
+    "</td><td>" +
+    employee.date +
+    "</td><td><img id='image" +
+    id +
+    "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
+
+    readURL(employee.file, id);
+}
+
 function addFields() {
   // Number of inputs to create
-  var lastName = document.getElementById("lastName").value;
-  var firstName = document.getElementById("firstName").value;
-  var email = document.getElementById("email").value;
-  var sex = document.getElementById("dropdown").value;
-  var file = document.getElementById("myfile");
-  var date = document.getElementById("start").value;
+  var newEmployee = new Object();
+  newEmployee.lastName = document.getElementById("lastName").value;
+  newEmployee.firstName = document.getElementById("firstName").value;
+  newEmployee.email = document.getElementById("email").value;
+  newEmployee.sex = document.getElementById("dropdown").value;
+  newEmployee.file = document.getElementById("myfile");
+  newEmployee.date = document.getElementById("start").value;
 
-  if (
-    lastName == "" ||
-    firstName == "" ||
-    email == "" ||
-    sex == "" ||
-    date == ""
-  ) {
+  if (!validateInput(newEmployee)) {
     alert("Fields are required.");
   } else {
-    var list = document.getElementsByClassName("list");
-
-    var id = document.getElementById("table").getElementsByTagName("tr").length;
-
-    document.getElementById("table").insertRow(-1).innerHTML =
-      "<tr><td>" +
-      lastName +
-      "</td><td>" +
-      firstName +
-      "</td><td>" +
-      email +
-      "</td><td>" +
-      sex +
-      "</td><td>" +
-      date +
-      "</td><td><img id='image" +
-      id +
-      "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
+    appendRow(newEmployee);
   }
-
-  readURL(file, id);
+  employeesList.push(newEmployee);
 }
 
 function filterFunction() {
@@ -96,7 +129,10 @@ function filterFunction() {
     if (td && td0) {
       txtValue = td.textContent || td.innerText;
       txtValue0 = td0.textContent || td0.innerText;
-      if (txtValue.indexOf(filter) > -1 && txtValue0.toUpperCase().indexOf(filterInput) > -1) {
+      if (
+        txtValue.indexOf(filter) > -1 &&
+        txtValue0.toUpperCase().indexOf(filterInput) > -1
+      ) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";
@@ -106,35 +142,37 @@ function filterFunction() {
 }
 
 function sortTableByDate() {
-
-  var sortAttribute = document.getElementById("sortDateButton").getAttribute("sort");
-  if(sortAttribute == "up") document.getElementById("sortDateButton").setAttribute("sort", "down");
+  var sortAttribute = document
+    .getElementById("sortDateButton")
+    .getAttribute("sort");
+  if (sortAttribute == "up")
+    document.getElementById("sortDateButton").setAttribute("sort", "down");
   else document.getElementById("sortDateButton").setAttribute("sort", "up");
   var table, rows, switching, i, x, y, shouldSwitch;
   table = document.getElementById("table");
   switching = true;
   while (switching) {
-      switching = false;
-      rows = table.rows;
-      for (i = 1; i < (rows.length - 1); i++) {
-          shouldSwitch = false;
-          x = new Date(rows[i].getElementsByTagName("td")[4].innerText);
-          y = new Date(rows[i + 1].getElementsByTagName("td")[4].innerText);
-          if(sortAttribute == "up") {
-              if (x < y) {
-                  shouldSwitch = true;
-                  break;
-              }
-          } else if(sortAttribute == "down") {
-              if (x > y) {
-                  shouldSwitch = true;
-                  break;
-              }
-          }
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < rows.length - 1; i++) {
+      shouldSwitch = false;
+      x = new Date(rows[i].getElementsByTagName("td")[4].innerText);
+      y = new Date(rows[i + 1].getElementsByTagName("td")[4].innerText);
+      if (sortAttribute == "up") {
+        if (x < y) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (sortAttribute == "down") {
+        if (x > y) {
+          shouldSwitch = true;
+          break;
+        }
       }
-      if (shouldSwitch) {
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
   }
 }
