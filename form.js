@@ -6,6 +6,7 @@ jQuery(document).ready(function ($) {
     url: "https://localhost:5001/employee/Employee",
     success: function (data) {
       employeesList = data;
+      console.log(employeesList);
       loadEmployees(employeesList);
     },
     error: function (data) {
@@ -68,7 +69,6 @@ function validateInput(newEmployee) {
     !newEmployee.firstName ||
     !newEmployee.lastName ||
     !newEmployee.email ||
-    !newEmployee.file ||
     !newEmployee.birthdate
   ) {
     return false;
@@ -77,9 +77,11 @@ function validateInput(newEmployee) {
 }
 
 function appendRow(employee) {
-  var id = document.getElementById("table").getElementsByTagName("tr").length;
+  let employeesTable = document.querySelector("table");
+  var id = employeesTable.getElementsByTagName("tr").length;
+  console.log(employee);
 
-  document.getElementById("table").insertRow(-1).innerHTML =
+  employeesTable.innerHTML +=
     "<tr><td>" +
     employee.lastName +
     "</td><td>" +
@@ -94,7 +96,7 @@ function appendRow(employee) {
     id +
     "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
 
-    readURL(employee.file, id);
+  //readURL(employee.file, id);
 }
 
 function addFields() {
@@ -104,15 +106,27 @@ function addFields() {
   newEmployee.firstName = document.getElementById("firstName").value;
   newEmployee.email = document.getElementById("email").value;
   newEmployee.gender = document.getElementById("dropdown").value;
-  newEmployee.file = document.getElementById("myfile");
+  //newEmployee.file = document.getElementById("myfile");
   newEmployee.birthdate = document.getElementById("start").value;
 
   if (!validateInput(newEmployee)) {
     alert("Fields are required.");
-  } else {
-    appendRow(newEmployee);
-  }
+  } 
+
   employeesList.push(newEmployee);
+
+  $.ajax({
+    method: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(newEmployee),
+    url: "https://localhost:5001/employee/Employee",
+    success: function (data) {
+      appendRow(data);
+    },
+    error: function (data) {
+      alert(`Failed to load employees list.`);
+    },
+  });
 }
 
 function filterFunction() {
