@@ -77,7 +77,7 @@ function validateInput(newEmployee) {
 }
 
 function appendRow(employee) {
-  let employeesTable = document.querySelector("table");
+  let employeesTable = document.getElementById("table");
   var id = employeesTable.getElementsByTagName("tr").length;
   console.log(employee);
 
@@ -130,7 +130,7 @@ function addFields() {
 }
 
 function filterFunction() {
-  filter = $("#filtergender").val();
+  filter = $("#filterSex").val();
   table = document.getElementById("table");
   tr = table.getElementsByTagName("tr");
 
