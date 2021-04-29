@@ -6,11 +6,10 @@ jQuery(document).ready(function ($) {
     url: "https://localhost:5001/employee/Employee",
     success: function (data) {
       employeesList = data;
-      console.log(employeesList);
       loadEmployees(employeesList);
     },
     error: function (data) {
-      alert(`Failed to load employees list.`);
+      alert(`Failed to get employees list.`);
     },
   });
 });
@@ -37,15 +36,13 @@ function deleteUser(btn, idFromDb) {
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
 
-  console.log(idFromDb);
-
   $.ajax({
     method: "DELETE",
     url: `https://localhost:5001/employee/Employee/${idFromDb}`,
     success: function (data) {
     },
     error: function (data) {
-      alert(`Failed to load employees list.`);
+      alert(`Failed to delete employee.`);
     },
   });
 }
@@ -86,7 +83,6 @@ function validateInput(newEmployee) {
 function appendRow(employee) {
   let employeesTable = document.getElementById("table");
   var id = employeesTable.getElementsByTagName("tr").length;
-  console.log(employee);
 
   employeesTable.innerHTML +=
     "<tr><td>" +
@@ -130,7 +126,7 @@ function addFields() {
       employeesList.push(data);
     },
     error: function (data) {
-      alert(`Failed to load employees list.`);
+      alert(`Failed to add employee.`);
     },
   });
 }
