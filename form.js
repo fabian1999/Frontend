@@ -21,11 +21,6 @@ function loadEmployees(employeesList) {
   }
 }
 
-function deleteUser(btn) {
-  var row = btn.parentNode.parentNode;
-  row.parentNode.removeChild(row);
-}
-
 function readURL(input, id) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
@@ -38,9 +33,21 @@ function readURL(input, id) {
   }
 }
 
-function deleteUser(btn) {
+function deleteUser(btn, idFromDb) {
   var row = btn.parentNode.parentNode;
   row.parentNode.removeChild(row);
+
+  console.log(idFromDb);
+
+  $.ajax({
+    method: "DELETE",
+    url: `https://localhost:5001/employee/Employee/${idFromDb}`,
+    success: function (data) {
+    },
+    error: function (data) {
+      alert(`Failed to load employees list.`);
+    },
+  });
 }
 
 function formatDate(userDate) {
@@ -94,7 +101,7 @@ function appendRow(employee) {
     employee.birthdate +
     "</td><td><img id='image" +
     id +
-    "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this)'>X</button></td></tr>";
+    "' style='width: 20px; height: 20px' src='#'></img></td><td><button onClick='deleteUser(this, "+employee.id+")'>X</button></td></tr>";
 
   //readURL(employee.file, id);
 }
@@ -113,15 +120,14 @@ function addFields() {
     alert("Fields are required.");
   } 
 
-  employeesList.push(newEmployee);
-
   $.ajax({
     method: "POST",
     contentType: "application/json",
     data: JSON.stringify(newEmployee),
     url: "https://localhost:5001/employee/Employee",
-    success: function (data) {
+    success: function (data) {  
       appendRow(data);
+      employeesList.push(data);
     },
     error: function (data) {
       alert(`Failed to load employees list.`);
